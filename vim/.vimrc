@@ -31,6 +31,9 @@ inoremap {<CR> {<CR>}<Esc>O
 inoremap {} {}
 inoremap {{ {
 
+"To make scripts executable
+nnoremap <leader>x :!chmod +x %<CR>
+
 autocmd filetype c nnoremap <F9> :w <bar> !gcc -Wall % -o %:r<CR>
 autocmd filetype c nnoremap <F10> :!./%:r<CR>
 autocmd filetype c nnoremap <C-C> :s/^\(\s*\)/\1\/\/<CR> :s/^\(\s*\)\/\/\/\//\1<CR> $
