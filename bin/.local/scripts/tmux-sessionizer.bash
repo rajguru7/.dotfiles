@@ -26,8 +26,8 @@ selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 
 # [[true]] is exit status 0 , TMUX is set when inside tmux session.
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-        tmux new-session -s $selected_name -c $selected
+if [[ -z $TMUX ]] || [[ -z $tmux_running ]]; then           #Changed && to || to allow using script when tmux is running but 
+        tmux new-session -s $selected_name -c $selected     #not currently in session.
             exit 0
 fi
 
