@@ -32,3 +32,4 @@ source /usr/local/opt/fzf/shell/key-bindings.zsh
 
 #alias
 alias tt="tree -CL 2"
+alias ts="tmux-sessionizer.bash"
