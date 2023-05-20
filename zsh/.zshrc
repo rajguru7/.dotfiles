@@ -1,13 +1,13 @@
 #run-help config for getting documentation on zsh builtins. Refer below link.
 #https://stackoverflow.com/questions/4405382/how-can-i-read-documentation-about-built-in-zsh-commands
 
-set -o vi
+# set -o vi
 unalias run-help
 autoload run-help
 
 #Env config
 #export PATH="/usr/local/opt/node@16/bin:$PATH"
-export PATH="/usr/local/opt/echidna-test:$PATH"
+export PATH="/Users/saurabhrajguru/.local/scripts/:/usr/local/opt/echidna-test:$PATH"
 
 #Prompt config
 autoload colors
