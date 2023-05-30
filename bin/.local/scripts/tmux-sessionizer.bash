@@ -4,7 +4,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fd . ~ ~/work ~/Documents ~/Downloads ~/Desktop ~/notes/docs -H --exact-depth 1 --color never --type d | fzf) 
+    selected=$(fd . ~ ~/work ~/Documents ~/Downloads ~/Desktop ~/notes/docs ~/learn -H --exact-depth 1 --color never --type d | fzf) 
 fi
 
 #selected_base=$(basename $selected | tr . _)
