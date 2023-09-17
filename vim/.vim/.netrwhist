@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/Users/saurabhrajguru/.dotfiles/pypi'
+let g:netrw_dirhist_5='/Users/saurabhrajguru/Documents/internships/nyu_summer'
+let g:netrw_dirhist_4='/Users/saurabhrajguru/learn/ctf'
+let g:netrw_dirhist_3='/Users/saurabhrajguru/learn/discrete_structures/docs'
+let g:netrw_dirhist_2='/Users/saurabhrajguru/Documents/medical'
+let g:netrw_dirhist_1='/Users/saurabhrajguru/learn/discrete_structures/docs'
+let g:netrw_dirhist_0='/Users/saurabhrajguru/learn/discrete_structures'
+let g:netrw_dirhist_9='/Users/saurabhrajguru/learn/discrete_structures/docs'
+let g:netrw_dirhist_8='/Users/saurabhrajguru/learn/discrete_structures'
+let g:netrw_dirhist_7='/Users/saurabhrajguru/learn'
