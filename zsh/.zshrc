@@ -1,13 +1,23 @@
-#run-help config for getting documentation on zsh builtins. Refer below link.
-#https://stackoverflow.com/questions/4405382/how-can-i-read-documentation-about-built-in-zsh-commands
 
 # set -o vi
-unalias run-help
-autoload run-help
 
 #Env config
 #export PATH="/usr/local/opt/node@16/bin:$PATH"
-export PATH="/Users/saurabhrajguru/.local/scripts/:/usr/local/opt/echidna-test:$PATH"
+if [[ $OSTYPE == "linux-gnu"* ]]; then
+    export PATH="/home/killua/.local/scripts/:$PATH"
+    source /usr/share/doc/fzf/examples/completion.zsh
+    source /usr/share/doc/fzf/examples/key-bindings.zsh
+elif [[ $OSTYPE == "darwin"* ]]; then
+    export PATH="/Users/saurabhrajguru/.local/scripts/:/usr/local/opt/echidna-test:$PATH"
+    # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+    source /usr/local/opt/fzf/shell/completion.zsh
+    source /usr/local/opt/fzf/shell/key-bindings.zsh
+    unalias run-help
+    autoload run-help
+fi
+
+#autocomplete
+autoload -U compinit && compinit
 
 #Prompt config
 autoload colors
@@ -26,9 +36,6 @@ export FZF_CTRL_T_COMMAND='fd -H --color=never'
 export FZF_ALT_C_COMMAND='fd -H --type d --color=never'
 export FZF_ALT_C_OPTS="--preview 'tree -CL 2 {}' --keep-right --preview-window right,30"
 
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source /usr/local/opt/fzf/shell/completion.zsh
-source /usr/local/opt/fzf/shell/key-bindings.zsh
 
 #alias
 alias tt="tree -CL 2"
