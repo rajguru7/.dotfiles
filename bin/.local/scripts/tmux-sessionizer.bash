@@ -1,10 +1,19 @@
 #!/usr/bin/env bash
 
+
+if [[ $OSTYPE == "linux-gnu"* ]]; then
+    FD=$'fdfind' #fd alias doesn't work in fzf config strings, hence used variable
+elif [[ $OSTYPE == "darwin"* ]]; then
+    FD=$'fd'
+fi
+
+
+
 # My code below
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fd . ~ ~/work ~/Documents ~/Downloads ~/Desktop ~/notes/docs ~/learn -H --exact-depth 1 --color never --type d | fzf) 
+    selected="$($FD . ~ ~/work ~/Documents ~/Downloads ~/Desktop ~/notes/docs ~/learn -H --exact-depth 1 --color never --type d | fzf)" 
 fi
 
 #selected_base=$(basename $selected | tr . _)
