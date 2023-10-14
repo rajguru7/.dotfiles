@@ -7,9 +7,11 @@ export PATH="$HOME/.local/scripts/:$PATH"
 
 if [[ $OSTYPE == "linux-gnu"* ]]; then
     alias fd=fdfind
+    alias bat=batcat
     source /usr/share/doc/fzf/examples/completion.zsh
     source /usr/share/doc/fzf/examples/key-bindings.zsh
-    FD=$'fdfind' #fd alias doesn't work in fzf config strings, hence used variable
+    FD=$'fdfind' #environment variables work in the sourced fzf scripts
+    BAT=$'batcat'
 elif [[ $OSTYPE == "darwin"* ]]; then
     # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
     source /usr/local/opt/fzf/shell/completion.zsh
@@ -17,6 +19,7 @@ elif [[ $OSTYPE == "darwin"* ]]; then
     unalias run-help
     autoload run-help
     FD=$'fd'
+    BAT=$'bat'
 fi
 
 # Taken from kali zshrc
@@ -80,14 +83,23 @@ ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]=standout
 #PS1='%{$fg_bold[blue]%}%~%{$reset_color%} $ '
 
 # FZF config
-export FZF_DEFAULT_COMMAND="$FD -H --color=never"   # -H is for show hidden files
-export FZF_DEFAULT_OPTS='--no-height'
+export FZF_DEFAULT_COMMAND="$FD -H"   # -H is for show hidden files
+export FZF_DEFAULT_OPTS="--no-height --preview '$BAT -n --color=always {}'"
 
-export FZF_CTRL_T_COMMAND="$FD -H --color=never"
-export FZF_ALT_C_COMMAND="$FD -H --type d --color=never"
+export FZF_CTRL_T_COMMAND="$FD -H"
+export FZF_ALT_C_COMMAND="$FD -H --type d"
 export FZF_ALT_C_OPTS="--preview 'tree -CL 2 {}' --keep-right --preview-window right,30"
 
 
 #alias
-alias tt="tree -CL 2"
 alias ts="tmux-sessionizer.bash"
+alias tt="tree -CL 2"
+openv() {
+    source openv.bash
+}
+if [[ -d "$HOME/.pyenv" ]]; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+fi
+

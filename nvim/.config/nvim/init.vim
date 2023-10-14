@@ -4,8 +4,11 @@ syntax on
 set mouse=a
 set clipboard=unnamed
 set ruler
+set colorcolumn=80
+highlight ColorColumn ctermbg=234 
 "set shellpipe=2>&1
-autocmd filetype markdown set backupcopy=yes "To stop the deleting renaming of original file for mkdocs to work properly
+"To stop the deleting renaming of original file for mkdocs to work properly
+autocmd filetype markdown set backupcopy=yes 
 
 "scrolling options
 nnoremap <C-d> <C-d>zz
@@ -53,10 +56,12 @@ nnoremap <leader>pv :Vex<CR>
 
 autocmd filetype c nnoremap <F9> :w <bar> !gcc -Wall % -o %:r<CR>
 autocmd filetype c nnoremap <F10> :!./%:r<CR>
-autocmd filetype c nnoremap <C-C> :s/^\(\s*\)/\1\/\/<CR> :s/^\(\s*\)\/\/\/\//\1<CR> $
+autocmd filetype c nnoremap 
+            \ <C-C> :s/^\(\s*\)/\1\/\/<CR> :s/^\(\s*\)\/\/\/\//\1<CR> $
 
 autocmd filetype go nnoremap <F10> :!./fuzzer_run.sh<CR>
-autocmd filetype go nnoremap <C-C> :s/^\(\s*\)/\1\/\/<CR> :s/^\(\s*\)\/\/\/\//\1<CR> $
+autocmd filetype go nnoremap 
+            \ <C-C> :s/^\(\s*\)/\1\/\/<CR> :s/^\(\s*\)\/\/\/\//\1<CR> $
 
 autocmd filetype java nnoremap <F9> :w <bar> !javac %<CR>
 autocmd filetype java nnoremap <F10> :!java %:r<CR>
@@ -68,7 +73,8 @@ autocmd filetype java nnoremap <F10> :!java %:r<CR>
 "autocmd filetype markdown nnoremap <F10> :MarkedToggle!<CR>
 "Using map expression below to exhibit different behaviour for visual line and
 "visual/visual block mode Refer:
-"https://vi.stackexchange.com/questions/9276/how-can-i-create-a-mapping-only-in-plain-visual-mode
+"https://vi.stackexchange.com/questions/9276/how-can-i-create-a-mapping-only-in
+"-plain-visual-mode
 
 function! Math()
     " This gets rid of the nasty _ italic bug in tpope's vim-markdown
@@ -83,7 +89,9 @@ function! Math()
 endfunction
 
 
-autocmd filetype markdown vnoremap <expr> <leader>b mode() ==# "v" ? "di**<Esc>gpi**<Esc>" : 'dO**<C-r>"<BS>**<Esc>'
+autocmd filetype 
+    \ markdown vnoremap 
+    \ <expr> <leader>b mode() ==# "v" ? "di**<Esc>gpi**<Esc>" : 'dO**<C-r>"<BS>**<Esc>'
 autocmd BufRead,BufNewFile,BufEnter *.md,*.markdown call Math()
 
 
@@ -115,7 +123,8 @@ Plug 'junegunn/vim-easy-align'
 call plug#end()
 "-----------------
 
-"call mkdx#configure({ 'enter': { 'enable': 1, 'shift': 0, 'o': 1, 'shifto': 1, 'malformed': 0 },
+"call mkdx#configure({ 'enter': { 'enable': 1, 'shift': 0, 'o': 1,
+"                    'shifto': 1, 'malformed': 0 },
 "                  \   'tab': { 'enable': 0 }, 
 "                  \   'table': { 'align': { 'default': 'left' }}})
 

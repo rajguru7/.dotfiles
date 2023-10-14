@@ -7,6 +7,13 @@ In debian systems the run-alias is already unaliased by /etc/zshrc [[3]][ext3]
 
 Taken snippets from zshrc and zsh files of kali linux.
 
+```zsh
+setopt aliases #To allow aliases in fzf config scripts. This does not work because 
+               #fzf scripts disable aliases explicitly in its scripts
+```
+
+## References
+
 [ext1]: https://dev.to/rossijonas/how-to-set-up-history-based-autocompletion-in-zsh-k7o
 [ext2]: https://stackoverflow.com/questions/4405382/how-can-i-read-documentation-about-built-in-zsh-commands
 [ext3]: https://superuser.com/questions/1600089/how-can-i-add-run-help-to-zshrc-without-errors
