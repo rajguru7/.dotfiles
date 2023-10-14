@@ -3,7 +3,7 @@
 #Env config
 #export PATH="/usr/local/opt/node@16/bin:$PATH"
 #export PATH="/Users/saurabhrajguru/.local/scripts/:/usr/local/opt/echidna-test:$PATH"
-export PATH="$HOME/.local/scripts/:$PATH"
+export PATH="$HOME/.local/bin/:$HOME/.local/scripts/:$PATH"
 
 if [[ $OSTYPE == "linux-gnu"* ]]; then
     alias fd=fdfind
