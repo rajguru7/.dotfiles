@@ -54,6 +54,7 @@ nnoremap <leader><CR> :so %<CR>
 "To open file explorer
 nnoremap <leader>pv :Vex<CR>
 
+au BufRead,BufNewFile *.r2py set filetype=python
 autocmd filetype c nnoremap <F9> :w <bar> !gcc -Wall % -o %:r<CR>
 autocmd filetype c nnoremap <F10> :!./%:r<CR>
 autocmd filetype c nnoremap 
