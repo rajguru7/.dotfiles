@@ -1,5 +1,10 @@
 #!/usr/bin/bash
 #wsl ubuntu doesn't identify external disk mount
+
+if [ ! -d "/mnt/d" ]; then
+    sudo mkdir -p /mnt/d
+fi
+
 sudo umount /mnt/d 2>/dev/null
 sudo mount -t drvfs D: /mnt/d
 cd $HOME
