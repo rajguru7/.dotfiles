@@ -4,3 +4,4 @@ if ! op item list > /dev/null 2>&1; then
     eval $(op signin)
 fi
 eval export GITHUB_TOKEN=$(op read op://Personal/zc3wfc7xcblkus2ttwxh5q52nq/token)
+eval export OPENAI_API_KEY=$(op read op://Personal/chatgpt-api/token)
