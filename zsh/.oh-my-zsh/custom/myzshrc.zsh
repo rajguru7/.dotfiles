@@ -85,7 +85,7 @@ ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]=standout
 # FZF config
 export FZF_DEFAULT_COMMAND="$FD -H"   # -H is for show hidden files
 #export FZF_DEFAULT_OPTS="--no-height --preview '$BAT -n --color=always {}'"
-export FZF_DEFAULT_OPTS="--preview '[[ \$(file --mime {}) =~ directory ]] && tree -CL 2 {} || ($BAT -n --color=always {} || cat {}) 2> /dev/null | head -500'"
+export FZF_DEFAULT_OPTS="--no-height --preview '[[ \$(file --mime {}) =~ directory ]] && tree -CL 2 {} || ($BAT -n --color=always {} || cat {}) 2> /dev/null | head -500'"
 
 export FZF_CTRL_T_COMMAND="$FD -H"
 export FZF_ALT_C_COMMAND="$FD -H --type d"
