@@ -15,11 +15,13 @@ if [ "$1" = 'upload' ]; then
 
     cp finance.tar /mnt/d/
     cp work.tar /mnt/d/
+    cp .zsh_history /mnt/d/
     rm finance.tar work.tar
 
 elif [ "$1" = 'download' ]; then
     cp /mnt/d/finance.tar ./
     cp /mnt/d/work.tar ./
+    cp /mnt/d/.zsh_history ./
 
     tar xf finance.tar
     tar xf work.tar
