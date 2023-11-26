@@ -3,18 +3,20 @@
 read -r -p "put custom directory name as argument to script otherwise
 current directory name will be used as the virtual env name
 ensure pyenv global is set to desired python version
-current version: $(pyenv global)
+current version: $(python --version)
 ensure you are in correct working directory
 PWD: $PWD
 continue? [y/N] " response
 
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-     if [ -z "$1" ]; then
-        $1=$(basename $PWD)
-     fi
+    if [ -z "$1" ]; then
+        venv=$(basename $PWD)
+    else
+        venv=$1
+    fi
 
-    pyenv virtualenv "$1"
-    pyenv local "$(pyenv global)/envs/$1"
+    pyenv virtualenv "$venv"
+    pyenv local "$(pyenv global)/envs/$venv"
 
     read -r -p "proceed with pip-tools install? [y/N] " response
 
