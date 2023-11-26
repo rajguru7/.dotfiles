@@ -11,5 +11,6 @@ require('mason-lspconfig').setup({
   ensure_installed = { "jdtls", "pyright" },
   handlers = {
     lsp_zero.default_setup,
+    jdtls = lsp_zero.noop, -- nvim-jdtls to start up jdtls (more functionality)
   },
 })
