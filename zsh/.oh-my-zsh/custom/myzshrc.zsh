@@ -5,6 +5,11 @@
 #export PATH="/Users/saurabhrajguru/.local/scripts/:/usr/local/opt/echidna-test:$PATH"
 export PATH="$HOME/.local/bin:$HOME/.local/scripts:$PATH:/snap/bin"
 
+if command -v go &> /dev/null; then
+    export GOPATH=$(go env GOPATH)
+    export PATH="$GOPATH/bin:$PATH"
+fi
+
 if [[ $OSTYPE == "linux-gnu"* ]]; then
     alias fd=fdfind
     alias bat=batcat
@@ -85,9 +90,10 @@ ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]=standout
 # FZF config
 export FZF_DEFAULT_COMMAND="$FD -H"   # -H is for show hidden files
 #export FZF_DEFAULT_OPTS="--no-height --preview '$BAT -n --color=always {}'"
-export FZF_DEFAULT_OPTS="--no-height --preview '[[ \$(file --mime {}) =~ directory ]] && tree -CL 2 {} || ($BAT -n --color=always {} || cat {}) 2> /dev/null | head -500'"
+export FZF_DEFAULT_OPTS="--no-height"
 
 export FZF_CTRL_T_COMMAND="$FD -H"
+export FZF_CTRL_T_OPTS="--no-height --preview '[[ \$(file --mime {}) =~ directory ]] && tree -CL 2 {} || ($BAT -n --color=always {} || cat {}) 2> /dev/null | head -500'"
 export FZF_ALT_C_COMMAND="$FD -H --type d"
 export FZF_ALT_C_OPTS="--preview 'tree -CL 2 {}' --keep-right --preview-window right,30"
 
