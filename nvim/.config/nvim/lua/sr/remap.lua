@@ -9,6 +9,9 @@ vim.keymap.set("x", "K", [[mode() ==# "V" ? ":m '<-2<CR>gv=gv" : "K"]], { expr =
 
 vim.keymap.set("n", "J", "mzJ`z")
 
+-- create file under cursor if doesn't exist
+vim.keymap.set("n", "<leader>gf", "<cmd>e <cfile><CR>")
+
 -- scrolling options
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
@@ -27,3 +30,22 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
+-- remap for test and submit shortcut in leetcode-cli. Reference chatgpt
+vim.api.nvim_exec([[
+  augroup DirectoryMappings
+    autocmd!
+    autocmd BufEnter * lua map_leetcode_dir_keys()
+  augroup END
+]], false)
+
+function map_leetcode_dir_keys()
+  local current_directory = vim.fn.expand('%:p:h')
+
+  if current_directory:match('/.leetcode/code$') then
+    -- Your mapping for the 'example' directory goes here
+    vim.api.nvim_buf_set_keymap(0, 'n', '<leader>\'', [[:execute "!leetcode test " . split(expand("%:t:r"), '\.')[0]<CR>]], { noremap = true, silent = true })
+    vim.api.nvim_buf_set_keymap(0, 'n', '<leader><CR>', [[:execute "!leetcode exec " . split(expand("%:t:r"), '\.')[0]<CR>]], { noremap = true, silent = true })
+  end
+end
+
+------

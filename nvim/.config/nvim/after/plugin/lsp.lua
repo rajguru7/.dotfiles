@@ -8,9 +8,10 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = { "jdtls", "pyright" },
+  -- ensure_installed = { "bashls", "jdtls", "pyright" },
+  ensure_installed = { "bashls", "pyright" },
   handlers = {
     lsp_zero.default_setup,
-    jdtls = lsp_zero.noop, -- nvim-jdtls to start up jdtls (more functionality)
+    -- jdtls = lsp_zero.noop, -- nvim-jdtls to start up jdtls (more functionality)
   },
 })

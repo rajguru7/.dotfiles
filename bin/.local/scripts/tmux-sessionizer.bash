@@ -14,9 +14,9 @@ if [[ $# -eq 1 ]]; then
     selected=$1
 else
     if [[ $OSTYPE == "linux-gnu"* ]]; then
-        selected="$($FD . ~ ~/work ~/personal ~/finance ~/rough ~/notes/docs ~/learn -H --exact-depth 1 --color never --type d | fzf)" 
+        selected="$($FD . ~/.. ~ ~/work ~/personal ~/finance ~/rough ~/notes/docs ~/learn ~/ctf -H --exact-depth 1 --color never --type d | fzf)" 
     elif [[ $OSTYPE == "darwin"* ]]; then
-        selected="$($FD . ~ ~/work ~/personal ~/finance ~/Documents ~/rough ~/notes/docs ~/learn -H --exact-depth 1 --color never --type d | fzf)" 
+        selected="$($FD . ~/.. ~ ~/work ~/personal ~/finance ~/Documents ~/rough ~/notes/docs ~/learn ~/ctf -H --exact-depth 1 --color never --type d | fzf)" 
     fi
 fi
 

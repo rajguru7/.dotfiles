@@ -1,4 +1,5 @@
 -- TODO: convert this to lua
+vim.opt_local.spell=true
 vim.cmd([[
     autocmd filetype markdown setlocal backupcopy=yes 
     function! Math()
