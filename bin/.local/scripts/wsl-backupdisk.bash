@@ -18,6 +18,8 @@ if [ "$1" = 'upload' ]; then
     cp work.tar /mnt/d/
     cp rough.tar /mnt/d/
     cp .zsh_history /mnt/d/
+    cp notes/docs/index.md /mnt/d
+    cp notes/docs/journal.md /mnt/d/
     rm finance.tar work.tar rough.tar
 
 elif [ "$1" = 'download' ]; then
@@ -25,6 +27,8 @@ elif [ "$1" = 'download' ]; then
     cp /mnt/d/work.tar ./
     cp /mnt/d/rough.tar ./
     cp /mnt/d/.zsh_history ./
+    cp /mnt/d/index.md notes/docs/
+    cp /mnt/d/journal.md notes/docs/
 
     tar xf finance.tar
     tar xf work.tar
