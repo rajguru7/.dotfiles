@@ -7,33 +7,37 @@ fi
 
 sudo umount /mnt/d 2>/dev/null
 sudo mount -t drvfs D: /mnt/d
-cd $HOME
+cd "$HOME" || exit
 
 if [ "$1" = 'upload' ]; then
     tar cf finance.tar finance/
     tar cf work.tar work/
     tar cf rough.tar rough/
+    tar cf learn.tar learn/
+    tar cf apply.tar apply/
 
     cp finance.tar /mnt/d/
     cp work.tar /mnt/d/
     cp rough.tar /mnt/d/
+    cp learn.tar /mnt/d/
+    cp apply.tar /mnt/d/
     cp .zsh_history /mnt/d/
-    cp notes/docs/index.md /mnt/d
-    cp notes/docs/journal.md /mnt/d/
-    rm finance.tar work.tar rough.tar
+    rm finance.tar work.tar rough.tar learn.tar apply.tar
 
 elif [ "$1" = 'download' ]; then
     cp /mnt/d/finance.tar ./
     cp /mnt/d/work.tar ./
     cp /mnt/d/rough.tar ./
+    cp /mnt/d/learn.tar ./
+    cp /mnt/d/apply.tar ./
     cp /mnt/d/.zsh_history ./
-    cp /mnt/d/index.md notes/docs/
-    cp /mnt/d/journal.md notes/docs/
 
     tar xf finance.tar
     tar xf work.tar
     tar xf rough.tar
-    rm finance.tar work.tar rough.tar
+    tar xf learn.tar
+    tar xf apply.tar
+    rm finance.tar work.tar rough.tar learn.tar apply.tar
 
 else
     echo "wsl-backupdisk.bash upload - upload private data to external ssd"

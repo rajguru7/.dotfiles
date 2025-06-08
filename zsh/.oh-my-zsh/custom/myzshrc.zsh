@@ -3,8 +3,8 @@
 #Env config
 #export PATH="/usr/local/opt/node@16/bin:$PATH"
 #export PATH="/Users/saurabhrajguru/.local/scripts/:/usr/local/opt/echidna-test:$PATH"
-# export PATH="$HOME/.local/bin:$HOME/.local/scripts:$PATH:/snap/bin"
-export PATH="$HOME/.local/bin:$HOME/.local/scripts:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.local/scripts:$PATH:/snap/bin"
+# export PATH="$HOME/.local/bin:$HOME/.local/scripts:$PATH"
 
 if command -v go &> /dev/null; then
     export GOPATH=$(go env GOPATH)
@@ -113,6 +113,7 @@ if [[ -d "$HOME/.pyenv" ]]; then
     eval "$(pyenv init -)"
 fi
 
+# commented out due to slow down
 # JAVA - sdkman
 # export SDKMAN_DIR="$HOME/.sdkman"
 # [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
