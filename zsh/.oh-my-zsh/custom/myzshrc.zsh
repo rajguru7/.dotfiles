@@ -29,7 +29,7 @@ FD=$'fdfind' #environment variables work in the sourced fzf scripts
 BAT=$'batcat'
 
 # Fix dark blue color
-LS_COLORS='di=01;96:st=96:su=86:'$LS_COLORS
+LS_COLORS='di=01;96:st=96:su=86:'$LS_COLORS'di=01;96:st=96:su=86:'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 autoload -U compinit && compinit
 
