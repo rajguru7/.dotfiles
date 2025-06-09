@@ -3,22 +3,36 @@
 #Env config
 #export PATH="/usr/local/opt/node@16/bin:$PATH"
 #export PATH="/Users/saurabhrajguru/.local/scripts/:/usr/local/opt/echidna-test:$PATH"
-export PATH="$HOME/.local/bin:$HOME/.local/scripts:$PATH:/snap/bin"
+# export PATH="$HOME/.local/bin:$HOME/.local/scripts:$PATH:/snap/bin"
 # export PATH="$HOME/.local/bin:$HOME/.local/scripts:$PATH"
+
+# Build your path array once
+path=(
+  "$HOME/.local/bin"
+  "$HOME/.local/scripts"
+  $path
+  "/snap/bin"
+)
+
 
 if command -v go &> /dev/null; then
     export GOPATH=$(go env GOPATH)
-    export PATH="$GOPATH/bin:$PATH"
+    path=( "$GOPATH/bin" $path )
 fi
 
 # if [[ $OSTYPE == "linux-gnu"* ]]; then
 alias fd=fdfind
 alias bat=batcat
-source /usr/share/doc/fzf/examples/completion.zsh
+# source /usr/share/doc/fzf/examples/completion.zsh # not required
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 FD=$'fdfind' #environment variables work in the sourced fzf scripts
 BAT=$'batcat'
-LS_COLORS=$LS_COLORS:'di=0;96:st=96:su=86'
+
+# Fix dark blue color
+LS_COLORS='di=01;96:st=96:su=86:'$LS_COLORS
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+autoload -U compinit && compinit
+
 # elif [[ $OSTYPE == "darwin"* ]]; then
 #     # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #     source /usr/local/opt/fzf/shell/completion.zsh
@@ -81,13 +95,6 @@ ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]=standout
 # removed 
 
 
-#Prompt config
-#autoload colors && colors
-#setopt PROMPT_SUBST
-#setopt promptsubst
-#PS1='${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[green]%}%~%{$reset_color%} $ '
-#PS1='%{$fg_bold[blue]%}${PWD/$HOME/~}%{$reset_color%} $ '
-#PS1='%{$fg_bold[blue]%}%~%{$reset_color%} $ '
 
 # FZF config
 # export FZF_DEFAULT_COMMAND="$FD -H"   # -H is for show hidden files
@@ -109,7 +116,7 @@ openv() {
 }
 if [[ -d "$HOME/.pyenv" ]]; then
     export PYENV_ROOT="$HOME/.pyenv"
-    command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+    command -v pyenv >/dev/null || path=( "$PYENV_ROOT/bin" $path )
     eval "$(pyenv init -)"
 fi
 
@@ -119,7 +126,38 @@ fi
 # [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
  
 # Node - nvm
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export PATH="/home/killua/.nvm/versions/node/v21.6.2/bin:$PATH"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export PATH="/home/killua/.nvm/versions/node/v21.6.2/bin:$PATH"
+
+# nvm() {
+#     # load nvm the first time you call it
+#     export NVM_DIR="$HOME/.nvm"
+#     if [ -s "$NVM_DIR/nvm.sh" ]; then
+#         # shellcheck disable=SC1091
+#         . "$NVM_DIR/nvm.sh"
+#     fi
+#     # hand off to the real nvm
+#     nvm "$@"
+# }
+#
+# # optional: lazy-load bash-completion too
+# _nvm_completion() {
+#     [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+# }
+#
+# for cmd in node npm npx; do
+#   export NVM_DIR="$HOME/.nvm"
+#   eval "
+#   function $cmd() {
+#     [ -s \"\$NVM_DIR/nvm.sh\" ] && . \"\$NVM_DIR/nvm.sh\"
+#     command $cmd \"\$@\"
+#   }
+#   "
+# done
+
+# Remove any duplicates and export
+typeset -U path
+export PATH=${(j/:/)path}
+
